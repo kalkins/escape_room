@@ -1,4 +1,11 @@
-const int lightPin = 8;
+#include <Servo.h>
+
+Servo servo;
+
+int servo_locked_pos = 80;
+int servo_unlocked_pos = 180;
+
+const int servoPin = 8;
 
 const int input_pins_length = 3;
 const int input_pins[] = {7, 4, 3};
@@ -14,8 +21,9 @@ int last_change;
 
 void setup() {
   Serial.begin(9600);
-  
-  pinMode(lightPin, OUTPUT);
+
+  servo.attach(servoPin);
+  servo.write(servo_locked_pos);
   
   for (int i = 0; i < input_pins_length; i++) {
     pinMode(input_pins[i], INPUT);
@@ -47,7 +55,7 @@ void loop() {
   }
 
   if (last_was_start_state && is_end_state && (millis() - last_change) < switch_time) {
-    digitalWrite(lightPin, HIGH);
+    servo.write(servo_unlocked_pos);
     Serial.println("Success");
   }
   
