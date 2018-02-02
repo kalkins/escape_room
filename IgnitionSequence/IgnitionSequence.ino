@@ -3,12 +3,12 @@
 Servo servo;
 
 int servo_locked_pos = 80;
-int servo_unlocked_pos = 180;
+int servo_unlocked_pos = 170;
 
-const int servoPin = 8;
+const int servoPin = 5;
 
 const int input_pins_length = 3;
-const int input_pins[] = {7, 4, 3};
+const int input_pins[] = {2, 3, 4};
 
 const int start_state[] = {1, 0, 1};
 const int end_state[] = {0, 1, 0};
