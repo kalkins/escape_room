@@ -17,7 +17,7 @@ const int switch_time = 200;
 
 int last_values[input_pins_length];
 bool last_was_start_state = false;
-int last_change;
+unsigned long last_change;
 
 void setup() {
   Serial.begin(9600);
