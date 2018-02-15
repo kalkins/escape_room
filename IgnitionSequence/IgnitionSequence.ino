@@ -23,11 +23,28 @@ void setup() {
   Serial.begin(9600);
 
   servo.attach(servoPin);
-  servo.write(servo_locked_pos);
+  servo.write(servo_unlocked_pos);
   
   for (int i = 0; i < input_pins_length; i++) {
     pinMode(input_pins[i], INPUT);
   }
+
+  bool should_lock = false;
+  while (!should_lock) {
+    delay(50);
+    for (int i = 0; i < input_pins_length; i++) {
+      int pin = input_pins[i];
+      int val = digitalRead(pin);
+      if (val == 1) {
+        fshould_lock = true;
+      } else {
+        should_lock = false;
+        break;
+      }
+    }
+  }
+
+  servo.write(servo_locked_pos);
 
   last_change = millis();
 }
